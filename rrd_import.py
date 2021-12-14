@@ -10,7 +10,7 @@ def get_db_name(datadir, sensor):
     return os.path.join(datadir, '%s.rrd' % sensor)
 
 def create_db(datadir, sensor):
-    all_fields, first_ts = inspect_sensor(dirname, sensor)
+    all_fields, first_ts = inspect_sensor(datadir, sensor)
     data_sources = ['DS:%s:GAUGE:600:-30:50' % f for f in all_fields]
     rrdtool.create(get_db_name(datadir, sensor),
         '--start', str(first_ts - 1),
