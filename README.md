@@ -1,6 +1,6 @@
 # stasi
 
-Collect data from various sensors and use [`rrdtool`](https://oss.oetiker.ch/rrdtool/doc/rrdtool.en.html) to generate graphs.
+Collect data from various sensors (see [`gan`](https://github.com/ibz/gan)) and use [`rrdtool`](https://oss.oetiker.ch/rrdtool/doc/rrdtool.en.html) to generate graphs.
 
 # Building
 
