@@ -4,6 +4,8 @@ RUN apt-get update && apt-get install -y cron python3-rrdtool rsync ssh sudo
 
 COPY scripts /scripts
 
+RUN mkdir /stasi
+
 RUN useradd -m stasi
 RUN mkdir -p /home/stasi/.ssh
 RUN chown -R stasi:stasi /home/stasi/.ssh

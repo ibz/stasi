@@ -5,7 +5,7 @@ import rrdtool
 
 from rrd import get_sensors, get_sensor_files, inspect_sensor
 
-COLORS = ['#FF0000', '#00FF00', '#0000FF']
+COLORS = ['#0b84a5', '#f6c85f', '#6f4e7c', '#9dd866', '#ca472f', '#ffa056', '#8dddd0']
 
 def rrd_graph(datadir, htmldir, field):
     sensors = []
@@ -15,7 +15,7 @@ def rrd_graph(datadir, htmldir, field):
             sensors.append(sensor)
 
     defs = ['DEF:%s_%d=%s:%s:AVERAGE' % (field, i, os.path.join(datadir, '%s.rrd' % sensor), field) for i, sensor in enumerate(sensors, 1)]
-    lines = ['LINE%d:%s_%d%s' % (i, field, i, COLORS[i - 1]) for i, sensor in enumerate(sensors, 1)]
+    lines = ['LINE1:%s_%d%s:%s' % (field, i, COLORS[i - 1], "%s @%s" % (field, sensor)) for i, sensor in enumerate(sensors, 1)]
 
     for interval in ['day', 'week', 'month', 'year']:
         rrdtool.graph(os.path.join(htmldir, '%s_%s.png' % (field, interval)),
@@ -24,5 +24,5 @@ def rrd_graph(datadir, htmldir, field):
                 *(defs + lines))
 
 if __name__ == '__main__':
-    rrd_graph(sys.argv[1], sys.argv[2], 'temperature')
+    rrd_graph(sys.argv[1], sys.argv[2], 'temp')
 

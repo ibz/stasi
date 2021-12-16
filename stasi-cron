@@ -1,2 +1,2 @@
-* * * * * for s in stable; do su stasi -- /scripts/sync.sh $s; done >> /var/log/cron.log 2>&1 && python3 /scripts/rrd_import.py /data >> /var/log/cron.log 2>&1 && python3 /scripts/rrd_graph.py /data /images >> /var/log/cron.log 2>&1
+* * * * * cd /stasi && su -s /bin/bash stasi -- /scripts/sync.sh >> /var/log/cron.log 2>&1 && python3 /scripts/rrd_import.py data >> /var/log/cron.log 2>&1 && python3 /scripts/rrd_graph.py data images >> /var/log/cron.log 2>&1
 

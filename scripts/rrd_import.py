@@ -40,7 +40,7 @@ def import_file(datadir, sensor, filename, all_fields, last_imported):
                 line_data[0] = line_data[0][1:]
             date = datetime.fromtimestamp(int(line_data[0]))
             if last_imported is None or date > last_imported:
-                data = [d for _, d in sorted(zip(fields[1:], line_data[1:]), key=lambda fld: all_fields.index(fld[0]))]
+                data = [line_data[fields.index(f)] if f in fields else 'U' for f in all_fields]
                 rrdtool.update(get_db_name(datadir, sensor), '%d:%s' % (int(line_data[0]), ':'.join(data)))
                 with open(os.path.join(datadir, sensor, 'IMPORTED'), 'w') as lifd:
                     lifd.write('%s\n' % ','.join(all_fields))

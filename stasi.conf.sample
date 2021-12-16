@@ -1,0 +1,2 @@
+declare -a DATA_SOURCES=("sensor@sample:~/data/")
+
