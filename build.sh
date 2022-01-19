@@ -2,7 +2,7 @@
 
 trap "exit" INT
 
-VERSION=v0.0.11
+VERSION=v0.0.12
 
 declare -a architectures=("amd64" "arm64")
 
