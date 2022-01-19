@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  web:
+    image: nginx
+    restart: on-failure
+    stop_grace_period: 1m
+    ports:
+      - 8123:80
+    volumes:
+      - /mnt/data/umbrel/stasi/images:/usr/share/nginx/html
+  stasi:
+    image: ibz0/stasi:v0.0.13
+    restart: on-failure
+    stop_grace_period: 1m
+    volumes:
+      - /mnt/data/umbrel/stasi/:/stasi
+      - /home/umbrel/.ssh:/home/stasi/.ssh:ro

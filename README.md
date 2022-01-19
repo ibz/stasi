@@ -4,23 +4,13 @@ Collect data from various sensors (see [`gan`](https://github.com/ibz/gan)) and 
 
 My own home monitoring setup involves one instance of `stasi` running directly on my [Umbrel](https://getumbrel.com/), which syncs data from multiple Raspberry Pi Zero devices that collect data using `gan`.
 
+## Running pre-built images
+
+On [Umbrel](https://github.com/getumbrel/umbrel/) you can run `stasi` using `docker-compose up -d`. This will run a pre-built Docker image and mount `/mnt/data/umbrel/stasi/` and `/home/umbrel/.ssh`, which need to exist.
+
 ## Building
 
-The Docker image can be built for Raspberry Pi using `docker buildx build --platform=linux/arm64 .`
-
-## Pre-built images
-
-You can run a pre-built image from Docker Hub directly on your Raspberry Pi using:
-
-`docker run -v <STASIDIR>:/stasi -v ~/.ssh:/home/stasi/.ssh:ro --name stasi --rm -d -it ibz0/stasi:v0.0.9`
-
-(Replace `<STASIDIR>` a local directory that will be used to sync data to, generate images and load the configuration file from. Also, make sure you have a SSH key in your `~/.ssh`.)
-
-## Accessing the graphs
-
-You can serve the graphs using
-
-`docker run -p 8123:80 -v <STASIDIR>/images:/usr/share/nginx/html --name stasi-nginx --rm -d -it nginx`
+Build the Docker image yourself using `docker buildx build --platform=linux/arm64 .`
 
 ## TODO
 
