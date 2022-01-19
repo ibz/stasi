@@ -38,8 +38,11 @@ def import_file(datadir, sensor, filename, all_fields, last_imported):
             line_data = line.strip().split(',')
             while line_data[0].startswith('\x00'): # deal with broken data
                 line_data[0] = line_data[0][1:]
-            date = datetime.fromtimestamp(int(line_data[0]))
-            if last_imported is None or date > last_imported:
+            try:
+                date = datetime.fromtimestamp(int(line_data[0]))
+            except ValueError:
+                date = None
+            if date and (last_imported is None or date > last_imported):
                 data = [line_data[fields.index(f)] if f in fields else 'U' for f in all_fields]
                 rrdtool.update(get_db_name(datadir, sensor), '%d:%s' % (int(line_data[0]), ':'.join(data)))
                 with open(os.path.join(datadir, sensor, 'IMPORTED'), 'w') as lifd:
