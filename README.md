@@ -12,15 +12,15 @@ The Docker image can be built for Raspberry Pi using `docker buildx build --plat
 
 You can run a pre-built image from Docker Hub directly on your Raspberry Pi using:
 
-`docker run -v IMGDIR:/images -v DATADIR:/data -v ~/.ssh:/home/stasi/.ssh:ro --name stasi --rm -d -it ibz0/stasi:v0.0.1`
+`docker run -v <STASIDIR>:/stasi -v ~/.ssh:/home/stasi/.ssh:ro --name stasi --rm -d -it ibz0/stasi:v0.0.9`
 
-(Replace `IMGDIR` and `DATADIR` with two local directories. Also, make sure you have a SSH key in your `~/.ssh`.)
+(Replace `<STASIDIR>` a local directory that will be used to sync data to, generate images and load the configuration file from. Also, make sure you have a SSH key in your `~/.ssh`.)
 
 ## Accessing the graphs
 
 You can serve the graphs using
 
-`docker run -p 8123:80 -v IMGDIR:/usr/share/nginx/html --name stasi-nginx --rm -d -it nginx`
+`docker run -p 8123:80 -v <STASIDIR>/images:/usr/share/nginx/html --name stasi-nginx --rm -d -it nginx`
 
 ## TODO
 
