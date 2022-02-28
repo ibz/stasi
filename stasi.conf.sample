@@ -1,2 +1,3 @@
 declare -a DATA_SOURCES=("sensor@sample:~/data/")
+declare -a GRAPHS=("temp:data1+data2" "temp:data3")
 GRAPH_TZ=EET
