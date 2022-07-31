@@ -10,7 +10,7 @@ services:
     volumes:
       - /mnt/data/umbrel/stasi/images:/usr/share/nginx/html
   stasi:
-    image: ibz0/stasi:v0.0.13
+    image: ibz0/stasi:v0.0.18
     restart: on-failure
     stop_grace_period: 1m
     volumes:
