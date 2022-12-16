@@ -1,1 +1,0 @@
-* * * * * cd /stasi && su -s /bin/bash stasi -- /scripts/sync.sh >> /var/log/cron.log 2>&1 && python3 /scripts/rrd_import.py data >> /var/log/cron.log 2>&1 && /scripts/graph.sh >> /var/log/cron.log 2>&1

@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from datetime import datetime
 import os
 import sys
@@ -55,6 +57,7 @@ def import_file(datadir, sensor, filename, all_fields, last_imported):
 def rrd_import(datadir):
     for sensor in get_sensors(datadir):
         all_fields, last_imported = get_last_imported(datadir, sensor)
+        print(f"Importing {sensor} (last imported at {last_imported})...")
         if not last_imported:
             all_fields = create_db(datadir, sensor)
         for filename in get_sensor_files(datadir, sensor):
@@ -64,4 +67,3 @@ def rrd_import(datadir):
 
 if __name__ == '__main__':
     rrd_import(sys.argv[1])
-
