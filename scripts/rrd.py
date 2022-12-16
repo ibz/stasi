@@ -21,4 +21,3 @@ def inspect_sensor(datadir, sensor):
         all_fields = sorted(set(all_fields) | fields)
         first_ts = min(first_ts, ts) if first_ts is not None else ts
     return all_fields, first_ts
-
