@@ -19,7 +19,7 @@ The ideal way is to start from a `gan` instance, as built by [`gan-gen`](https:/
 1. Set up a cron job to do this periodically
    * `sudo touch /var/log/cron.log && chmod a+w /var/log/cron.log`
    * `crontab -e`
-   * `* * * * * /home/gan/stasi/scripts/sync.sh >> /var/log/cron.log 2>&1 && python3 /home/gan/stasi/scripts/rrd_import.py /home/gan/stasi-data/ >> /var/log/cron.log 2>&1 && /home/gan/stasi/scripts/graph.sh >> /var/log/cron.log 2>&1`
+   * `* * * * * /home/gan/stasi/scripts/sync.sh >> /var/log/cron.log 2>&1 && python3 /home/gan/stasi/scripts/rrd_import.py /home/gan/stasi-data/ >> /var/log/cron.log 2>&1 && /home/gan/stasi/scripts/graph.sh >> /var/log/cron.log 2>&1 && echo DONE at `date` >> /var/log/cron.log`
 
 ## TODO
 
